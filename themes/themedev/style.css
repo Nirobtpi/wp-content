@@ -1,0 +1,21 @@
+/*
+Theme Name: My Custom Theme
+Theme URI: https://example.com/my-theme
+Author: Nirob
+Author URI: https://example.com
+Description: A brief description of the theme.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: my-custom-theme
+Tags: responsive, two-columns, custom-background
+*/
+
+.card-img {
+	width: 100%;
+	height: 138px;
+    object-fit: cover;
+}
+.event-thumb-info{
+	max-width: 250px !important;
+}
