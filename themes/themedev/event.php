@@ -33,9 +33,17 @@ get_header();
                         <div class="thumb">
                             <img class="card-img-top" style="object-fit: cover;" width="100%" height="300px"
                                 src="<?php the_post_thumbnail_url(); ?>" alt="Title" />
-                            <ul class="thumb-info event-thumb-info">
+                            <ul class="thumb-info">
                                 <li><i class="fas fa-map-marker-alt"></i><?php echo get_field('event_location') ?></li>
                                 <li><i class="fas fa-calendar-week"></i><?php echo get_The_date() ?></li>
+                                <?php
+                                $terms=get_the_terms(get_the_ID(),'events_category');
+                               foreach($terms as $term){
+                                ?>
+                                <li><i class="fas fa-tags"></i><a href="<?php echo esc_url(get_term_link($term->term_id)); ?>"><?php echo $term->name ?></a></li>
+                                <?php
+                               }
+                                ?>
                             </ul>
                         </div>
 
