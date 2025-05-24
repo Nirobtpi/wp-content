@@ -118,6 +118,24 @@ function custom_post_type(){
         'menu_icon'=>'dashicons-calendar-alt',
         'supports'=> array('title','editor','thumbnail','excerpt','author'),
     ));
+
+    register_taxonomy('events_category','events',array(
+        'labels'=>[
+            'name'=> 'Event Categories',
+            'add_new'=>'Add New Event Category',
+            'add_new_item'=>'Add New Event Category',
+            'edit_item'=>'Edit Event Category',
+            'new_item_name'=>'New Event Category',
+            'parent_item'=> 'Parent Category',
+            'search_items'=>'Search Event Categories',
+            'all_items'=>'All Event Categories',
+            'view_item'=>'View Event Category',
+            'update_item'=>'Update Event Category',
+
+        ],
+        'public'=>true,
+        'hierarchical'=>true,
+    ));
 }
 add_action('init','custom_post_type',10,2);
 
@@ -125,6 +143,7 @@ add_action('init','custom_post_type',10,2);
 // add custom coloumn in events post
 function events_columns($columns){
     $columns['event_location'] = 'Event Location';
+    $columns['events_category']='Event Category';
     return $columns;
 }
 
@@ -136,6 +155,10 @@ function events_columns_content($column_name,$post_id){
     case 'event_location':
         echo get_post_meta($post_id,'event_location',true);
         break;
+    case 'events_category':
+        $terms= get_the_term_list($post_id,'events_category','','');
+        echo $terms ? $terms : '—';
+        break;
    }
 }
 add_action('manage_events_posts_custom_column','events_columns_content',10,2);
@@ -144,6 +167,7 @@ add_action('manage_events_posts_custom_column','events_columns_content',10,2);
 function events_sortable_columns($columns) {
  
     $columns['event_location'] = 'event_location';
+    $columns['events_category'] = 'events_category';
     return $columns;
 }
 
