@@ -33,6 +33,15 @@ function themedev_widget(){
         'before_title' => '<h4 class="single-sidebar-widget__title">',
         'after_title' => '</h4>',
     ]);
+    register_sidebar([
+        'name'=>'Posts',
+        'id'=>'post-sidebar',
+        'description'=>'Set Your Post',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '<h4 class="single-sidebar-widget__title">',
+        'after_title' => '</h4>',
+    ]);
 
 
 }
@@ -179,4 +188,5 @@ function nav_walker(){
 add_action('after_setup_theme','nav_walker');
 
 include_once get_template_directory().'/inc/tag-widget.php';
+include_once get_template_directory().'/inc/popular-post-widget.php';
 ?>

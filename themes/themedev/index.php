@@ -44,7 +44,9 @@
               </a>
               <p class="tag-list-inline">Tag: <?php $tags= get_the_tags();
                 $total = count($tags);
+                
                 foreach($tags as $index=>$tag){
+                 
                     echo '<a href="#">'.$tag->name.'</a>';
                   if ($index < $total - 1) {
                       echo ', ';
