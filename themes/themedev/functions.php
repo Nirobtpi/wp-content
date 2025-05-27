@@ -214,13 +214,40 @@ function banner_color_change(){
             .hero-banner__content h1{
                 color:<?php  echo esc_attr(get_theme_mod('banner_color')) ?>;
             };
-            .hero-banner{
-                background-position: left center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            };
         </style>
     <?php
 }
 add_action('wp_head','banner_color_change');
+
+// custom meta box 
+
+function event_custom_meta_box(){
+    $items=['events'];
+    foreach($items as $item){
+        add_meta_box(
+        'event_location',
+        'Event Location',
+        'event_meta_box_html',
+        $item
+        );
+    };
+}
+add_action('add_meta_boxes','event_custom_meta_box');
+
+function event_meta_box_html(){
+    ?>
+        <input type="text" class="widefat" id="event_location" name="event_location" value="<?php echo esc_attr(get_post_meta(get_the_ID(),'event_location',true)) ?>">
+    <?php
+}
+
+function event_meta_save($post_id){
+    if(array_key_exists('event_location',$_POST)){
+        update_post_meta(
+            $post_id,
+            'event_location',
+            $_POST['event_location'],
+        );
+    };
+}
+add_action('save_post','event_meta_save');
 ?>
