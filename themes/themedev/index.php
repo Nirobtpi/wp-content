@@ -3,7 +3,7 @@
   <!--================Hero Banner start =================-->
   <section class="mb-30px">
     <div class="container">
-      <div class="hero-banner">
+      <div class="hero-banner" style="background:url('<?php echo esc_url(get_theme_mod('banner_bg')) ?>'); background-position: center;background-size: cover; background-repeat: no-repeat;">
         <div class="hero-banner__content">
           <h3><?php echo get_theme_mod('sub_title') ?></h3>
           <h1><?php echo get_theme_mod('banner_heading') ?></h1>

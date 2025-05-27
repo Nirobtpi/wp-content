@@ -207,4 +207,20 @@ function mytheme_customize_preview_init(){
     wp_enqueue_script('customizer-js');
 }
 add_action('customize_preview_init','mytheme_customize_preview_init');
+
+function banner_color_change(){
+    ?>
+        <style>
+            .hero-banner__content h1{
+                color:<?php  echo esc_attr(get_theme_mod('banner_color')) ?>;
+            };
+            .hero-banner{
+                background-position: left center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            };
+        </style>
+    <?php
+}
+add_action('wp_head','banner_color_change');
 ?>

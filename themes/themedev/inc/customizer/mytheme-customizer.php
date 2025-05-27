@@ -6,6 +6,15 @@ function mytheme_customize_register($wp_customize){
         'title'=> __('Banner Section','mytheme'),
         'priority'=> 10,
     ));
+    // add_partial controll 
+    $wp_customize->selective_refresh->add_partial('banner_heading_selective',array(
+        'selector'=>'.hero-banner__content h1',
+        'section'=>'banner_section',
+        'settings'=>array('banner_heading'),
+        'return_callback'=>function(){
+            return get_theme_mod('banner_heading');
+        }
+    ));
     // hero heading settings 
     $wp_customize->add_setting('banner_heading',array(
         'default'=>__('Amazing Places on earth','mytheme'),
@@ -19,11 +28,35 @@ function mytheme_customize_register($wp_customize){
         'section'=>'banner_section',
 
     ));
+    // end banner heading 
+
+    // banner color changer 
+    $wp_customize->add_setting('banner_color',array(
+        'default'=>'red',
+        'transport'=>'postMessage',
+    ));
+    $wp_customize->add_control('banner_color_control',array(
+        'label'=>__('Banner Color','mytheme'),
+        'type'=>'color',
+        'settings'=>'banner_color',
+        'section'=>'banner_section',
+        
+    ));
+    // end change color 
 
     // banner sub title option 
     $wp_customize->add_setting('sub_title',array(
         'default'=>__('Tours & Travels','mytheme'),
         'transport'=>'postMessage',
+    ));
+    // add_partial controll 
+    $wp_customize->selective_refresh->add_partial('sub_title_selective',array(
+        'selector'=>__('.hero-banner__content h3','themedev'),
+        'section'=>'banner_section',
+        'settings'=>array('sub_title'),
+        'return_callback'=>function(){
+            return get_theme_mod('sub_title');
+        }
     ));
     $wp_customize->add_control('sub_title',array(
         'label'=>__('Sub Title','mytheme'),
@@ -31,11 +64,22 @@ function mytheme_customize_register($wp_customize){
         'section'=>'banner_section',
         'settings'=>'sub_title',
     ));
+    // end sub title option 
 
+    // banner date start option 
     $wp_customize->add_setting('banner_date',array(
         'default'=> date('Y-m-d'),
         'transport'=>'postMessage',
 
+    ));
+    // add_partial controll 
+    $wp_customize->selective_refresh->add_partial('banner_date_selective',array(
+        'selector'=>__('.hero-banner__content h4','themedev'),
+        'section'=>'banner_section',
+        'settings'=>array('banner_date'),
+        'return_callback'=>function(){
+            return get_theme_mod('banner_date');
+        }
     ));
     $wp_customize->add_control('banner_date',array(
         'label'=>__('Banner Date','mytheme'),
@@ -43,6 +87,24 @@ function mytheme_customize_register($wp_customize){
         'section'=>'banner_section',
         'settings'=>'banner_date',
     ));
+    // end banner date option 
+
+    // banner background chnage 
+
+    $wp_customize->add_setting('banner_bg',array(
+        'default'=>'',
+        'transport'=>'postMessage',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control( $wp_customize,'banner_bg_control',
+        array(
+            'label'=>__('Banner Background','memytheme'),
+            'section'=>'banner_section',
+            'settings'=>'banner_bg',
+            )
+        )
+    );
+    
 
 }
 
