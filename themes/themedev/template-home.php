@@ -12,9 +12,9 @@ get_header();
       <div class="container">
         <div class="hero-banner">
           <div class="hero-banner__content">
-            <h3>Tours & Travels</h3>
-            <h1>Amazing Places on earth</h1>
-            <h4>December 12, 2018</h4>
+            <h3><?php echo get_theme_mod('sub_title') ?></h3>
+            <h1><?php echo get_theme_mod('banner_heading') ?></h1>
+            <h4><?php echo date('M d, Y', strtotime(get_theme_mod('banner_date'))) ?></h4>
           </div>
         </div>
       </div>

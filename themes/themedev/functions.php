@@ -1,4 +1,13 @@
 <?php 
+
+if(!defined('ABSPATH')) exit;
+
+if(!defined('TEMPLATE_PATH_DIR')){
+    define('TEMPLATE_PATH_DIR',get_template_directory_uri().'/assets/');
+}
+if(!defined('TEMPLATE_PATH')){
+    define('TEMPLATE_PATH',get_template_directory().'/');
+}
 function themedev_setup() {
 
     add_theme_support( 'post-thumbnails' );
@@ -189,4 +198,13 @@ add_action('after_setup_theme','nav_walker');
 
 include_once get_template_directory().'/inc/tag-widget.php';
 include_once get_template_directory().'/inc/popular-post-widget.php';
+
+include_once TEMPLATE_PATH.'inc/customizer/mytheme-customizer.php';
+
+function mytheme_customize_preview_init(){
+    wp_register_script('customizer-js',TEMPLATE_PATH_DIR.'js/customizer.js',array('customize-preview'),'1.0',true); ;
+
+    wp_enqueue_script('customizer-js');
+}
+add_action('customize_preview_init','mytheme_customize_preview_init');
 ?>
