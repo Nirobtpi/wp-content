@@ -15,8 +15,10 @@ get_header();
             <h3><?php echo get_theme_mod('sub_title') ?></h3>
             <h1><?php echo get_theme_mod('banner_heading') ?></h1>
             <h4><?php echo date('M d, Y', strtotime(get_theme_mod('banner_date'))) ?></h4>
+           <p><?php echo get_theme_mod('about_section_setting') ?></p>
           </div>
         </div>
+        
       </div>
     </section>
     <!--================Hero Banner end =================-->  

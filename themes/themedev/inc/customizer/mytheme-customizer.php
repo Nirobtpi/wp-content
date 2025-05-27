@@ -11,7 +11,7 @@ function mytheme_customize_register($wp_customize){
         'selector'=>'.hero-banner__content h1',
         'section'=>'banner_section',
         'settings'=>array('banner_heading'),
-        'return_callback'=>function(){
+        'render_callback'=>function(){
             return get_theme_mod('banner_heading');
         }
     ));
@@ -54,7 +54,7 @@ function mytheme_customize_register($wp_customize){
         'selector'=>__('.hero-banner__content h3','themedev'),
         'section'=>'banner_section',
         'settings'=>array('sub_title'),
-        'return_callback'=>function(){
+        'render_callback'=>function(){
             return get_theme_mod('sub_title');
         }
     ));
@@ -77,7 +77,7 @@ function mytheme_customize_register($wp_customize){
         'selector'=>__('.hero-banner__content h4','themedev'),
         'section'=>'banner_section',
         'settings'=>array('banner_date'),
-        'return_callback'=>function(){
+        'render_callback'=>function(){
             return get_theme_mod('banner_date');
         }
     ));
@@ -105,6 +105,29 @@ function mytheme_customize_register($wp_customize){
         )
     );
     
+    // this is my test item 
+    $wp_customize->add_section('about_section',array(
+        'title'=>__('About Section','mytheme'),
+        'priority'=>20,
+    ));
+    $wp_customize->selective_refresh->add_partial('about_section_selective',array(
+        'selector'=>__('.hero-banner__content p','mytheme'),
+        'section'=> 'about_section',
+        'settings'=>array('about_section_setting'),
+        'render_callback'=>function(){
+        return get_theme_mod('about_section_setting');
+    }
+    ));
+    $wp_customize->add_setting('about_section_setting',array(
+        'default'=> 'Lorem ipsum dolor sit amet.',
+        'transport'=> 'postMessage',
+    ));
+    $wp_customize->add_control('about_section_con',array(
+        'label'=>__('About Section','mytheme'),
+        'section'=>'about_section',
+        'settings'=>'about_section_setting',
+        'type'=>'textarea',
+    ));
 
 }
 

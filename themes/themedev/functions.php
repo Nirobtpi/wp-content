@@ -13,6 +13,7 @@ function themedev_setup() {
     add_theme_support( 'post-thumbnails' );
     add_theme_support('title-tag');
     load_theme_textdomain('themeDev');
+    add_theme_support('customize-selective-refresh-widgets');
 
     register_nav_menus( array(
         'primary_menu'=> __('Primary Menu','themeDev'),
