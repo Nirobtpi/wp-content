@@ -251,4 +251,6 @@ function event_meta_save($post_id){
     };
 }
 add_action('save_post','event_meta_save');
+
+require_once TEMPLATE_PATH.'inc/redux/redux.php';
 ?>

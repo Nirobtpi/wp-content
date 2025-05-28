@@ -13,6 +13,11 @@
             echo date('M d, Y',strtotime($time));
           }
            ?></h4>
+           <?php
+          //  show redux option 
+            // echo $redux_option['opt-text']
+            echo $redux_option['text-area'];
+          ?>
         </div>
       </div>
     </div>
